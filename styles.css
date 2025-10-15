@@ -464,3 +464,212 @@ body {
 ::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal-content {
+    background-color: white;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    animation: slideIn 0.3s;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.modal-header h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: #999;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.2s;
+}
+
+.modal-close:hover {
+    background: #f5f5f5;
+    color: #333;
+}
+
+.modal-body {
+    padding: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 1.25rem;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-family: inherit;
+    transition: border-color 0.2s;
+}
+
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.form-hint {
+    display: block;
+    font-size: 0.8rem;
+    color: #666;
+    margin-top: 0.25rem;
+}
+
+.form-actions {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: flex-end;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid #e0e0e0;
+}
+
+.btn-secondary {
+    background: #6c757d;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: #5a6268;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(108, 117, 125, 0.4);
+}
+
+.btn-secondary:disabled {
+    background: #adb5bd;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.btn-primary:disabled {
+    background: #9ca8f0;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.btn-loading {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.spinner {
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.error-message {
+    padding: 0.75rem;
+    background: #fee;
+    border: 1px solid #fcc;
+    border-radius: 6px;
+    color: #c33;
+    font-size: 0.9rem;
+    margin-top: 1rem;
+}
+
+.success-message {
+    padding: 0.75rem;
+    background: #efe;
+    border: 1px solid #cfc;
+    border-radius: 6px;
+    color: #3c3;
+    font-size: 0.9rem;
+    margin-top: 1rem;
+}
+
+/* AI Logo Button Highlight */
+#aiLogo {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    font-weight: 600;
+}
+
+#aiLogo:hover {
+    background: linear-gradient(135deg, #5568d3 0%, #653a91 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+

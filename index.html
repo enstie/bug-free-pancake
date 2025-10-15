@@ -29,6 +29,7 @@
                         <button id="addRect" class="tool-btn" title="Add Rectangle">⬛ Rectangle</button>
                         <button id="addCircle" class="tool-btn" title="Add Circle">⚫ Circle</button>
                         <button id="addTriangle" class="tool-btn" title="Add Triangle">🔺 Triangle</button>
+                        <button id="aiLogo" class="tool-btn" title="AI Logo Generator">🤖 AI Logo</button>
                     </div>
                 </div>
 
@@ -150,6 +151,66 @@
     <!-- Hidden file input for image upload -->
     <input type="file" id="imageUpload" accept="image/*" style="display: none;">
 
+    <!-- AI Logo Generator Modal -->
+    <div id="aiLogoModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>🤖 AI Logo Generator</h2>
+                <button class="modal-close" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="aiLogoForm">
+                    <div class="form-group">
+                        <label for="logoPrompt">Logo Description *</label>
+                        <textarea 
+                            id="logoPrompt" 
+                            placeholder="Describe your logo (e.g., 'modern tech startup logo with blue and white colors')"
+                            rows="3"
+                            required
+                        ></textarea>
+                        <small class="form-hint">Be specific about style, colors, and theme</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="logoStyle">Style</label>
+                        <select id="logoStyle">
+                            <option value="">Default</option>
+                            <option value="minimalist">Minimalist</option>
+                            <option value="modern">Modern</option>
+                            <option value="vintage">Vintage</option>
+                            <option value="abstract">Abstract</option>
+                            <option value="geometric">Geometric</option>
+                            <option value="hand-drawn">Hand-drawn</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="logoSize">Size</label>
+                        <select id="logoSize">
+                            <option value="512">Small (512px)</option>
+                            <option value="768" selected>Medium (768px)</option>
+                            <option value="1024">Large (1024px)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" id="cancelAiLogo">Cancel</button>
+                        <button type="submit" class="btn btn-primary" id="generateAiLogo">
+                            <span class="btn-text">Generate Logo</span>
+                            <span class="btn-loading" style="display: none;">
+                                <span class="spinner"></span> Generating...
+                            </span>
+                        </button>
+                    </div>
+                </form>
+
+                <div id="aiLogoError" class="error-message" style="display: none;"></div>
+                <div id="aiLogoSuccess" class="success-message" style="display: none;"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="ai-logo-generator.js"></script>
     <script src="app.js"></script>
 </body>
 </html>
