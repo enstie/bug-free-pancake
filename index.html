@@ -29,6 +29,7 @@
                         <button id="addRect" class="tool-btn" title="Add Rectangle">⬛ Rectangle</button>
                         <button id="addCircle" class="tool-btn" title="Add Circle">⚫ Circle</button>
                         <button id="addTriangle" class="tool-btn" title="Add Triangle">🔺 Triangle</button>
+                        <button id="aiLogoGenerator" class="tool-btn" title="AI Logo Generator">🤖 AI Logo</button>
                     </div>
                 </div>
 
@@ -149,6 +150,37 @@
 
     <!-- Hidden file input for image upload -->
     <input type="file" id="imageUpload" accept="image/*" style="display: none;">
+
+    <!-- AI Logo Generator Modal -->
+    <div id="aiLogoModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>🤖 AI Logo Generator</h2>
+                <button class="modal-close" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p class="modal-description">Describe the logo you want to generate:</p>
+                <textarea id="logoPrompt" class="logo-prompt-input" placeholder="e.g., A modern tech company logo with blue and silver colors, minimalist design" rows="4"></textarea>
+                <div class="modal-tips">
+                    <strong>Tips:</strong>
+                    <ul>
+                        <li>Be specific about style (modern, vintage, minimalist, etc.)</li>
+                        <li>Include colors you want</li>
+                        <li>Mention the industry or theme</li>
+                        <li>Keep it concise but descriptive</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="cancelLogoGen" class="btn btn-secondary">Cancel</button>
+                <button id="generateLogo" class="btn btn-primary">🎨 Generate Logo</button>
+            </div>
+            <div id="logoGenerating" class="logo-generating" style="display: none;">
+                <div class="spinner"></div>
+                <p>Generating your logo...</p>
+            </div>
+        </div>
+    </div>
 
     <script src="app.js"></script>
 </body>
