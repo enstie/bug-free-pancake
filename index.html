@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Flyer Generator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>Advanced Flyer Generator</h1>
+            <div class="header-actions">
+                <button id="newProject" class="btn btn-primary" title="New Project">📄 New</button>
+                <button id="saveProject" class="btn btn-success" title="Save Project">💾 Save</button>
+                <button id="loadProject" class="btn btn-info" title="Load Project">📁 Load</button>
+            </div>
+        </header>
+
+        <div class="workspace">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <div class="tool-section">
+                    <h3>Tools</h3>
+                    <div class="tool-buttons">
+                        <button id="addText" class="tool-btn" title="Add Text">✍️ Text</button>
+                        <button id="addImage" class="tool-btn" title="Add Image">🖼️ Image</button>
+                        <button id="addRect" class="tool-btn" title="Add Rectangle">⬛ Rectangle</button>
+                        <button id="addCircle" class="tool-btn" title="Add Circle">⚫ Circle</button>
+                        <button id="addTriangle" class="tool-btn" title="Add Triangle">🔺 Triangle</button>
+                    </div>
+                </div>
+
+                <div class="tool-section">
+                    <h3>Templates</h3>
+                    <div class="templates">
+                        <button class="template-btn" data-template="event">Event Flyer</button>
+                        <button class="template-btn" data-template="sale">Sale Flyer</button>
+                        <button class="template-btn" data-template="business">Business Card</button>
+                        <button class="template-btn" data-template="blank">Blank Canvas</button>
+                    </div>
+                </div>
+
+                <div class="tool-section">
+                    <h3>Background</h3>
+                    <div class="background-controls">
+                        <label>Color:</label>
+                        <input type="color" id="bgColor" value="#ffffff">
+                        <button id="addGradient" class="btn btn-sm">Gradient</button>
+                        <button id="addPattern" class="btn btn-sm">Pattern</button>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Canvas Area -->
+            <main class="canvas-area">
+                <div class="toolbar">
+                    <div class="toolbar-group">
+                        <button id="undo" class="toolbar-btn" title="Undo">↶</button>
+                        <button id="redo" class="toolbar-btn" title="Redo">↷</button>
+                    </div>
+                    <div class="toolbar-group">
+                        <button id="zoomIn" class="toolbar-btn" title="Zoom In">🔍+</button>
+                        <button id="zoomOut" class="toolbar-btn" title="Zoom Out">🔍-</button>
+                        <button id="zoomReset" class="toolbar-btn" title="Reset Zoom">⟲</button>
+                    </div>
+                    <div class="toolbar-group">
+                        <label class="snap-grid">
+                            <input type="checkbox" id="snapToGrid">
+                            <span>Snap to Grid</span>
+                        </label>
+                    </div>
+                    <div class="toolbar-group">
+                        <button id="deleteSelected" class="toolbar-btn" title="Delete Selected">🗑️</button>
+                    </div>
+                    <div class="toolbar-group">
+                        <button id="exportPDF" class="btn btn-primary" title="Export as PDF">📄 PDF</button>
+                        <button id="exportPNG" class="btn btn-primary" title="Export as PNG">🖼️ PNG</button>
+                    </div>
+                </div>
+                <div class="canvas-wrapper">
+                    <canvas id="canvas"></canvas>
+                </div>
+            </main>
+
+            <!-- Properties Panel -->
+            <aside class="properties-panel">
+                <div class="panel-section">
+                    <h3>Properties</h3>
+                    <div id="textProperties" class="properties-group" style="display: none;">
+                        <label>Font:</label>
+                        <select id="fontFamily">
+                            <option value="Arial">Arial</option>
+                            <option value="Helvetica">Helvetica</option>
+                            <option value="Times New Roman">Times New Roman</option>
+                            <option value="Georgia">Georgia</option>
+                            <option value="Courier New">Courier New</option>
+                            <option value="Verdana">Verdana</option>
+                            <option value="Impact">Impact</option>
+                            <option value="Comic Sans MS">Comic Sans MS</option>
+                        </select>
+                        
+                        <label>Size:</label>
+                        <input type="number" id="fontSize" min="8" max="200" value="24">
+                        
+                        <label>Color:</label>
+                        <input type="color" id="textColor" value="#000000">
+                        
+                        <div class="text-style-buttons">
+                            <button id="boldBtn" class="style-btn" title="Bold">B</button>
+                            <button id="italicBtn" class="style-btn" title="Italic">I</button>
+                            <button id="underlineBtn" class="style-btn" title="Underline">U</button>
+                        </div>
+                        
+                        <label>Align:</label>
+                        <div class="align-buttons">
+                            <button class="align-btn" data-align="left">⬅</button>
+                            <button class="align-btn" data-align="center">⬌</button>
+                            <button class="align-btn" data-align="right">➡</button>
+                        </div>
+                    </div>
+                    
+                    <div id="shapeProperties" class="properties-group" style="display: none;">
+                        <label>Fill Color:</label>
+                        <input type="color" id="fillColor" value="#3498db">
+                        
+                        <label>Stroke Color:</label>
+                        <input type="color" id="strokeColor" value="#000000">
+                        
+                        <label>Stroke Width:</label>
+                        <input type="number" id="strokeWidth" min="0" max="20" value="2">
+                        
+                        <label>Opacity:</label>
+                        <input type="range" id="opacity" min="0" max="1" step="0.1" value="1">
+                        <span id="opacityValue">100%</span>
+                    </div>
+                </div>
+
+                <div class="panel-section">
+                    <h3>Layers</h3>
+                    <div id="layersList" class="layers-list">
+                        <!-- Layers will be dynamically added here -->
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <!-- Hidden file input for image upload -->
+    <input type="file" id="imageUpload" accept="image/*" style="display: none;">
+
+    <script src="app.js"></script>
+</body>
+</html>
