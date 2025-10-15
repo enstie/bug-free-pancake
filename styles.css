@@ -1,0 +1,97 @@
+/* styles.css */
+
+/* Responsive Design */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+}
+
+/* Gradient Backgrounds */
+.header {
+    background: linear-gradient(to right, #ff7e5f, #feb47b);
+    padding: 20px;
+    color: white;
+    text-align: center;
+}
+
+/* Modern UI Components */
+.button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+/* Toolbar Styling */
+.toolbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #f1f1f1;
+}
+
+/* Sidebar Panels */
+.sidebar {
+    width: 200px;
+    background-color: #f4f4f4;
+    padding: 15px;
+}
+
+/* Canvas Area */
+.canvas {
+    border: 1px solid #ccc;
+    width: 100%;
+    height: 400px;
+}
+
+/* Modal Dialogs */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+    padding-top: 60px;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+/* Button Styles */
+.button-primary {
+    background-color: #007bff; /* Blue */
+}
+
+.button-secondary {
+    background-color: #6c757d; /* Gray */
+}
