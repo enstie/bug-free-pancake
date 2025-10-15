@@ -4,7 +4,8 @@ A fully functional web-based flyer generator with advanced design capabilities.
 
 ## Features
 
-- **Drag-and-Drop Canvas Interface**: Built with Fabric.js for intuitive design manipulation
+- **AI Logo Generator**: Generate custom logos using AI (powered by Pollinations.ai)
+- **Drag-and-Drop Canvas Interface**: Built with custom canvas editor for intuitive design manipulation
 - **Rich Text Editing**: Multiple fonts, styles (bold, italic, underline), and alignment options
 - **Image Upload and Manipulation**: Add and resize images on your flyer
 - **Professional Templates**: Pre-designed templates for events, sales, and business cards
@@ -22,11 +23,15 @@ A fully functional web-based flyer generator with advanced design capabilities.
 
 1. Open `index.html` in a web browser
 2. Use the sidebar tools to add text, images, and shapes
-3. Select templates for quick starts
-4. Customize elements using the properties panel
-5. Manage layers in the layers panel
-6. Export your flyer as PDF or PNG
-7. Save projects for later editing
+3. **NEW**: Click "🤖 AI Logo" to generate custom logos with AI
+   - Describe your desired logo (e.g., "A modern tech company logo with blue colors")
+   - Click "Generate Logo" and wait for the AI to create it
+   - The logo will be automatically added to your canvas
+4. Select templates for quick starts
+5. Customize elements using the properties panel
+6. Manage layers in the layers panel
+7. Export your flyer as PDF or PNG
+8. Save projects for later editing
 
 ## Keyboard Shortcuts
 
@@ -40,7 +45,8 @@ A fully functional web-based flyer generator with advanced design capabilities.
 - HTML5
 - CSS3
 - JavaScript (ES6+)
-- Fabric.js (Canvas manipulation)
+- Custom Canvas Editor (for canvas manipulation)
+- Pollinations.ai API (for AI logo generation)
 - jsPDF (PDF export)
 - Font Awesome (Icons)
 

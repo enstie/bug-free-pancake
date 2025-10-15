@@ -603,6 +603,26 @@ function initEventListeners() {
         updateLayersList();
     });
     
+    // AI Logo Generator
+    document.getElementById('aiLogoGenerator').addEventListener('click', openLogoModal);
+    document.getElementById('closeModal').addEventListener('click', closeLogoModal);
+    document.getElementById('cancelLogoGen').addEventListener('click', closeLogoModal);
+    document.getElementById('generateLogo').addEventListener('click', generateAILogo);
+    
+    // Close modal when clicking outside
+    document.getElementById('aiLogoModal').addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeLogoModal();
+        }
+    });
+    
+    // Handle Enter key in prompt textarea
+    document.getElementById('logoPrompt').addEventListener('keydown', function(e) {
+        if (e.ctrlKey && e.key === 'Enter') {
+            generateAILogo();
+        }
+    });
+    
     // Image upload
     document.getElementById('imageUpload').addEventListener('change', function(e) {
         const file = e.target.files[0];
@@ -1230,5 +1250,59 @@ function getObjectName(obj, index) {
         return `Triangle ${index + 1}`;
     } else {
         return `Object ${index + 1}`;
+    }
+}
+
+// AI Logo Generator Functions
+function openLogoModal() {
+    const modal = document.getElementById('aiLogoModal');
+    modal.classList.add('show');
+    document.getElementById('logoPrompt').value = '';
+    document.getElementById('logoPrompt').focus();
+}
+
+function closeLogoModal() {
+    const modal = document.getElementById('aiLogoModal');
+    modal.classList.remove('show');
+    document.getElementById('logoGenerating').style.display = 'none';
+}
+
+async function generateAILogo() {
+    const prompt = document.getElementById('logoPrompt').value.trim();
+    
+    if (!prompt) {
+        alert('Please enter a description for your logo');
+        return;
+    }
+    
+    // Show loading state
+    document.getElementById('logoGenerating').style.display = 'flex';
+    
+    try {
+        // Use Pollinations.ai API to generate the logo
+        // The API endpoint: https://image.pollinations.ai/prompt/{prompt}
+        // We add parameters for better logo generation
+        const encodedPrompt = encodeURIComponent(`${prompt}, logo design, professional, high quality, transparent background`);
+        const imageUrl = `https://image.pollinations.ai/prompt/${encodedPrompt}?width=512&height=512&nologo=true&model=flux`;
+        
+        // Wait a bit for the image to be generated
+        await new Promise(resolve => setTimeout(resolve, 2000));
+        
+        // Add the generated logo to the canvas
+        editor.addImage(imageUrl);
+        updateLayersList();
+        
+        // Close the modal
+        closeLogoModal();
+        
+        // Show success message
+        setTimeout(() => {
+            alert('Logo generated and added to canvas! You can now resize and position it.');
+        }, 500);
+        
+    } catch (error) {
+        console.error('Error generating logo:', error);
+        alert('Failed to generate logo. Please try again.');
+        document.getElementById('logoGenerating').style.display = 'none';
     }
 }
