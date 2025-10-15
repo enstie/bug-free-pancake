@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bug Free Pancake</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Bug Free Pancake</h1>
+        <div class="tools">
+            <button id="aiLogoBtn" title="AI Logo Generator">🤖 AI Logo</button>
+        </div>
+    </header>
+    <main>
+        <!-- Existing content -->
+    </main>
+    <div id="aiLogoModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>AI Logo Generator</h2>
+            <form id="aiLogoForm">
+                <label for="businessName">Business Name:</label>
+                <input type="text" id="businessName" name="businessName" required>
+
+                <label for="industryType">Industry Type:</label>
+                <input type="text" id="industryType" name="industryType" required>
+
+                <label for="logoDescription">Logo Description:</label>
+                <textarea id="logoDescription" name="logoDescription" required></textarea>
+
+                <label for="colorScheme">Color Scheme:</label>
+                <input type="text" id="colorScheme" name="colorScheme">
+
+                <label for="style">Style:</label>
+                <select id="style" name="style">
+                    <option value="modern">Modern</option>
+                    <option value="classic">Classic</option>
+                    <option value="playful">Playful</option>
+                </select>
+
+                <button type="button" id="generateAILogo">Generate</button>
+                <div id="aiLogoLoading" style="display:none;">Loading...</div>
+                <div id="aiLogoError" style="color:red;"></div>
+            </form>
+        </div>
+    </div>
+    <script src="ai-logo-generator.js"></script>
+</body>
+</html>
