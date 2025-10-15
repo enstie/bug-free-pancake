@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Flyer Generator</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.0/fabric.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎨 Advanced Flyer Generator</h1>
+            <div class="header-actions">
+                <button id="newProject" class="btn btn-primary">New Project</button>
+                <button id="saveProject" class="btn btn-success">Save Project</button>
+                <button id="loadProject" class="btn btn-info">Load Project</button>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <aside class="sidebar left">
+                <div class="panel">
+                    <h3>Templates</h3>
+                    <div class="templates-grid">
+                        <div class="template-card" data-template="event">
+                            <div class="template-preview event-template"></div>
+                            <p>Event Flyer</p>
+                        </div>
+                        <div class="template-card" data-template="sale">
+                            <div class="template-preview sale-template"></div>
+                            <p>Sale Flyer</p>
+                        </div>
+                        <div class="template-card" data-template="announcement">
+                            <div class="template-preview announcement-template"></div>
+                            <p>Announcement</p>
+                        </div>
+                        <div class="template-card" data-template="business">
+                            <div class="template-preview business-template"></div>
+                            <p>Business</p>
+                        </div>
+                        <div class="template-card" data-template="party">
+                            <div class="template-preview party-template"></div>
+                            <p>Party Flyer</p>
+                        </div>
+                        <div class="template-card" data-template="blank">
+                            <div class="template-preview blank-template"></div>
+                            <p>Blank Canvas</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel">
+                    <h3>Tools</h3>
+                    <div class="tools-grid">
+                        <button class="tool-btn" id="addText" title="Add Text">
+                            <span>T</span> Text
+                        </button>
+                        <button class="tool-btn" id="addImage" title="Add Image">
+                            <span>🖼️</span> Image
+                        </button>
+                        <button class="tool-btn" id="addRect" title="Add Rectangle">
+                            <span>▭</span> Rectangle
+                        </button>
+                        <button class="tool-btn" id="addCircle" title="Add Circle">
+                            <span>●</span> Circle
+                        </button>
+                        <button class="tool-btn" id="addLine" title="Add Line">
+                            <span>─</span> Line
+                        </button>
+                        <button class="tool-btn" id="addTriangle" title="Add Triangle">
+                            <span>▲</span> Triangle
+                        </button>
+                    </div>
+                    <input type="file" id="imageUpload" accept="image/*" style="display: none;">
+                </div>
+            </aside>
+
+            <main class="canvas-area">
+                <div class="toolbar">
+                    <div class="toolbar-group">
+                        <button id="undo" class="icon-btn" title="Undo">↶</button>
+                        <button id="redo" class="icon-btn" title="Redo">↷</button>
+                    </div>
+                    <div class="toolbar-group">
+                        <button id="duplicate" class="icon-btn" title="Duplicate">⧉</button>
+                        <button id="delete" class="icon-btn" title="Delete">🗑️</button>
+                    </div>
+                    <div class="toolbar-group">
+                        <button id="bringForward" class="icon-btn" title="Bring Forward">⬆</button>
+                        <button id="sendBackward" class="icon-btn" title="Send Backward">⬇</button>
+                    </div>
+                    <div class="toolbar-group">
+                        <button id="zoomIn" class="icon-btn" title="Zoom In">+</button>
+                        <button id="zoomOut" class="icon-btn" title="Zoom Out">-</button>
+                        <button id="zoomReset" class="icon-btn" title="Reset Zoom">⊙</button>
+                    </div>
+                    <div class="toolbar-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="snapToGrid"> Snap to Grid
+                        </label>
+                    </div>
+                    <div class="toolbar-group export-group">
+                        <button id="exportPDF" class="btn btn-export">Export PDF</button>
+                        <button id="exportPNG" class="btn btn-export">Export PNG</button>
+                    </div>
+                </div>
+
+                <div class="canvas-wrapper">
+                    <canvas id="canvas"></canvas>
+                </div>
+            </main>
+
+            <aside class="sidebar right">
+                <div class="panel">
+                    <h3>Properties</h3>
+                    <div id="propertiesPanel" class="properties-content">
+                        <p class="no-selection">Select an object to edit properties</p>
+                    </div>
+                </div>
+
+                <div class="panel">
+                    <h3>Layers</h3>
+                    <div id="layersPanel" class="layers-content">
+                        <p class="no-layers">No layers yet</p>
+                    </div>
+                </div>
+
+                <div class="panel">
+                    <h3>Background</h3>
+                    <div class="background-controls">
+                        <label>Color:</label>
+                        <input type="color" id="bgColor" value="#ffffff">
+                        <button id="bgImage" class="btn btn-small">Set Image</button>
+                        <button id="bgGradient" class="btn btn-small">Gradient</button>
+                        <input type="file" id="bgImageUpload" accept="image/*" style="display: none;">
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <div id="gradientModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Gradient Background</h2>
+            <div class="gradient-controls">
+                <label>Color 1:</label>
+                <input type="color" id="gradColor1" value="#ff6b6b">
+                <label>Color 2:</label>
+                <input type="color" id="gradColor2" value="#4ecdc4">
+                <label>Type:</label>
+                <select id="gradType">
+                    <option value="linear">Linear</option>
+                    <option value="radial">Radial</option>
+                </select>
+                <button id="applyGradient" class="btn btn-primary">Apply</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
